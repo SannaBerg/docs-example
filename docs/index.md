@@ -93,7 +93,7 @@ API credentials are required to authenticate your requests. To create a service 
 
     !!! warning
         
-        Make sure that you store the key safely. It will have access to all Google Analytics properties that you grant.
+        Make sure that you store the key safely. This key provides access to all Google Analytics properties that you have granted.
 
 ## Step 4:Grant Access to the Service Account
 
@@ -123,7 +123,7 @@ To grant access to the service account:
 
 ## Step 5: Validation
 
-You should now be able to get data by calling the Google Analytics Data API. To validate this, we will query the number of active users in the last 7 days by calling the `runReport` endpoint using curl.
+You should now be able to access data by calling the Google Analytics Data API. To validate this, we will query the number of active users in the last 7 days by calling the `runReport` endpoint using curl.
 
 The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. For full information on the endpoints request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation.
 
@@ -131,7 +131,7 @@ To call `runReport` using curl:
 
 1. Create an access token using gcloud and the JSON service account key file you downloaded in [Create Service Account and Keys](#step-3-create-service-account-and-keys). 
    
-    Make the below calls in your terminal, replace `your-service-account-key.json` with the path to your service account key file.
+    Execute the commands below in your terminal. Replace `your-service-account-key.json` with the path to your service account key file.
 
     ```bash
     gcloud auth activate-service-account --key-file=your-service-account-key.json
