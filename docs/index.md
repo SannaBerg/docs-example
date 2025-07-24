@@ -1,6 +1,6 @@
 # Access Google Analytics Data Programmatically
 
-The [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1/rest) allows you to programmatically access your Google Analytics data. This can be useful if you're working in analytics, product development, marketing, or UX optimization, and want to do things like; automate data extraction, integrate analytics data into your applications, or perform advanced data analysis.
+The [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1/rest) allows you to programmatically access your Google Analytics data. This can be useful if you want to do things like; automate data extraction, integrate analytics data into your applications, or perform advanced data analysis.
 
 This guide describes how to set up a Google Cloud project with the appropriate credentials to use the Google Analytics Data API.
 
@@ -10,11 +10,14 @@ To create a Google Cloud project:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/).
 
-2. Click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png){ width="200" }) in the top left corner.
+2. Click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png){ width="300" }) in the top left corner.
 
-3. Click on the **New Project** button (![alt text](images/new-project-button.png){ width="200" }).
+3. Click on the **New Project** button.
+
+    ![alt text](images/select-a-project.png)
 
 4. Enter the following information:
+   
    - **Project name**
    - If applicable, your **Organization**.
    - If applicable, a **Location**.
@@ -23,9 +26,9 @@ To create a Google Cloud project:
 
 5. Click **Create** to create the project.
 
-!!! note
-    
-    If you have several Google accounts, make sure you are logged in with the account that you want to connect the project to.
+    !!! note
+        
+        If you have several Google accounts, make sure you are logged in with the account that you want to connect the project to.
 
 
 ## Step 2: Enable Google Analytics Data API
