@@ -42,7 +42,7 @@ To create a Google Cloud project:
 
 To enable the Google Analytics Data API for your project:
 
-1. Click on the **Open Project Picker** button ![alt text](images/open-project-picker-button.png) in the top left corner and select your **new project**.
+1. Click on the **Open Project Picker** button ![alt text](images/open-project-picker-button.png){ width="100" } in the top left corner and select your **new project**.
 
 2. Click on the hamburger menu in the top left corner and select **APIs & Services** > **Enable APIs & Services**.
 
