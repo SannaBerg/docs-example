@@ -2,6 +2,7 @@
 
 How to connect to the Google Analytics 4 Reporting API so you can access your data programmatically.
 
+MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation.
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
