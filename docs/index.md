@@ -25,8 +25,7 @@ To create a Google Cloud project:
 
 5. Click **Create** to create the project.
 
-    > [!NOTE]
-    > If you have several Google accounts, make sure you are logged in with the account that has permission to create projects in your organization and that you want to connect the project to.
+    !!! note If you have several Google accounts, make sure you are logged in with the account that has permission to create projects in your organization and that you want to connect the project to.
 
 ## Enable the Google Analytics Data API
 
@@ -66,22 +65,19 @@ To create a service account and generate a key:
 7.  Click **Done** to create the service account.
 
 8.  Click on the newly created service account, for example: **example-documentation@exampledocumentation.iam.gserviceaccount.com**.
+
 9.  Click **Add key** > **Create new key** and select **JSON**. A JSON file with the key is downloaded to your computer.
 
-    > [!WARNING] Make sure that you store the key safely. It will have access to all Google Analytics properties that you grant.
+    !!! warning Make sure that you store the key safely. It will have access to all Google Analytics properties that you grant.
 
+## Grant Access to the Service Account
 
-10. Open the Google Analytics 4 property that you want to connect to.
-11. Click on **Admin** in the bottom left corner.
-12. In the **Property** column, click on **Property Access Management**.
-13. Click the **+** button to add a new user.
-14. Enter the service account client-email address, for example: **example-documentation@exampledocumentation.iam.gserviceaccount.com**.
- > [!NOTE] Feel free to share this email account with business partners or other users that you want to give access to you analytics data. There are no secrets or keys included in the email address.
-## Project layout
+To allow the service account to access your Google Analytics data, you need to grant it access to the Google Analytics property:
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+1. Open the Google Analytics 4 property that you want to connect to.
+2. Click on **Admin** in the bottom left corner.
+3. In the **Property** column, click on **Property Access Management**.
+4. Click the **+** button to add a new user.
+5. Enter the service account client-email address, for example: **example-documentation@exampledocumentation.iam.gserviceaccount.com**.
 
-
+    !!! note Feel free to share this email account with business partners or other users that you want to give access to you analytics data. There are no secrets or keys included in the email address.  
