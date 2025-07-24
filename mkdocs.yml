@@ -1,3 +1,7 @@
 site_name: Connect to the Google Analytics 4 Reporting API
 theme:
   name: material
+extra:
+  analytics:
+    provider: google
+    property: G-B7ZFRMHGEK
