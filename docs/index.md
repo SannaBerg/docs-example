@@ -1,5 +1,8 @@
 # Welcome to MkDocs
 
+How to connect to the Google Analytics 4 Reporting API so you can access your data programmatically.
+
+
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
@@ -15,3 +18,5 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+
