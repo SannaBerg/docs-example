@@ -10,9 +10,9 @@ To create a Google Cloud project:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/).
 
-2. Click on the **Open Project Picker** button ![alt text](images/open-project-picker-button.png){ width="150" } in the top left corner.
+2. Click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png){ width="200" }) in the top left corner.
 
-3. Click on the **New Project** button.
+3. Click on the **New Project** button (![alt text](images/new-project-button.png){ width="200" }).
 
 4. Enter the following information:
    - **Project name**
@@ -161,4 +161,4 @@ To validate that you can access the Google Analytics Data API:
     ]
     }
     ```
-    
+
