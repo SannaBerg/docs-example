@@ -33,7 +33,9 @@ To create a Google Cloud project:
 
 5. Click **Create** to create the project.
 
-!!! note If you have several Google accounts, make sure you are logged in with the account that has permission to create projects in your organization and that you want to connect the project to.
+!!! note
+    
+    If you have several Google accounts, make sure you are logged in with the account that has permission to create projects in your organization and that you want to connect the project to.
 
 
 ## Enable the Google Analytics Data API
@@ -76,7 +78,9 @@ To create a service account and generate a key:
 
 7.  Click **Add key** > **Create new key** and select **JSON**. A JSON file with the key is downloaded to your computer.
 
-    !!! warning Make sure that you store the key safely. It will have access to all Google Analytics properties that you grant.
+    !!! warning
+        
+        Make sure that you store the key safely. It will have access to all Google Analytics properties that you grant.
 
 ## Grant Access to the Service Account
 
@@ -88,7 +92,9 @@ To allow the service account to access your Google Analytics data, you need to g
 4. Click the **+** button to add a new user.
 5. Enter the service account client-email address, for example: **example-documentation@exampledocumentation.iam.gserviceaccount.com**.
 
-!!! note You can share this email account with business partners and other users that you want to have access to your analytics data. There are no secrets or keys included in the email address.
+!!! note
+    
+    You can share this email account with business partners and other users that you want to have access to your analytics data. There are no secrets or keys included in the email address.
 
 ## Validation
 

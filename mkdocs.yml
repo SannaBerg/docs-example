@@ -5,3 +5,7 @@ extra:
   analytics:
     provider: google
     property: G-B7ZFRMHGEK
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
