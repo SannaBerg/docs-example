@@ -4,6 +4,11 @@ The [Google Analytics Data API](https://developers.google.com/analytics/devguide
 
 This guide describes how to set up a Google Cloud project with the appropriate credentials, to enable fetching data using the Google Analytics Data API.
 
+## Prerequisites
+
+- A [Google Analytics property](https://support.google.com/analytics/answer/9355666?hl=en) to set up access to.
+- gcloud command line tool installed. See the [gcloud installation guide](https://cloud.google.com/sdk/docs/install) for instructions.
+
 ## Step 1: Create Google Cloud Project
 
 To create a Google Cloud project:
@@ -120,30 +125,21 @@ To grant access to the service account:
 
 You should now be able to get data by calling the Google Analytics Data API. To validate this, we will query the number of active users in the last 7 days by calling the `runReport` endpoint using curl.
 
-The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. For information about the request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation.
+The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. For full information on the endpoints request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation.
 
 To call `runReport` using curl:
 
-1. Create an access token using the JSON service account key file you downloaded in [Create Service Account and Keys](#step-3-create-service-account-and-keys). You can use `curl` to obtain an access token as shown below. Replace `YOUR_KEY_FILE.json` with the path to your service account key file.
+1. Create an access token using gcloud and the JSON service account key file you downloaded in [Create Service Account and Keys](#step-3-create-service-account-and-keys). 
+   
+    Make the below calls in your terminal, replace `your-service-account-key.json` with the path to your service account key file.
 
     ```bash
-    export GOOGLE_APPLICATION_CREDENTIALS="YOUR_KEY_FILE.json"
-    ACCESS_TOKEN=$(curl -s \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d @<(jq -n --argjson creds "$(cat $GOOGLE_APPLICATION_CREDENTIALS)" '{
-        client_email: $creds.client_email,
-        private_key: $creds.private_key,
-        token_uri: $creds.token_uri
-        } | {
-        "iss": .client_email,
-        "scope": "https://www.googleapis.com/auth/analytics.readonly",
-        "aud": .token_uri,
-        "exp": (now|floor + 3600),
-        "iat": (now|floor)
-        } | @json') \
-    https://oauth2.googleapis.com/token | jq -r '.access_token')
+    gcloud auth activate-service-account --key-file=your-service-account-key.json
+    
+    gcloud auth print-access-token
     ```
+
+    This will print the token you can use in the `Authorization: Bearer <YOUR_ACCESS_TOKEN>` header.
 
 2. Get your Google Analytics **Property ID**. You can find it in the Google Analytics **Admin** section under **Property Settings**. It has the following format: `G-XXXXXXXXXX`.
 
@@ -152,7 +148,7 @@ To call `runReport` using curl:
     ```bash
     curl -X POST \
     "https://analyticsdata.googleapis.com/v1beta/properties/YOUR_PROPERTY_ID:runReport" \
-    -H "Authorization: Bearer $ACCESS_TOKEN" \
+    -H "Authorization: Bearer $YOUR_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
     -d '{
         "dimensions": [{"name": "date"}, {"name": "country"}],
@@ -160,7 +156,9 @@ To call `runReport` using curl:
         "dateRanges": [{"startDate": "7daysAgo", "endDate": "today"}]
     }'
     ```
-    In the above example we use fields `dimension`, `metric`, and `dateRange` to specify the data we want to retrieve. The dimensions are `date` and `country`, the metric is `activeUsers`, and the date range is set to the last 7 days. More fields can be added to the request, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation for more information.
+    In the above example we use fields `dimensions`, `metrics`, and `dateRanges` to specify the data we want to retrieve. The dimensions are `date` and `country`, the metric is `activeUsers`, and the date range is set to the last 7 days. 
+    
+    More fields can be added to the request, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation for more information.
 
 4. You should receive an output similar to what is shown below. For more information on the respons structure of `runReport` see the [RunReportResponse](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/RunReportResponse) documentation.
 
@@ -182,4 +180,5 @@ To call `runReport` using curl:
     ]
     }
     ```
+
 
