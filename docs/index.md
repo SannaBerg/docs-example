@@ -124,6 +124,7 @@ To validate that you can access the Google Analytics Data API:
         } | @json') \
     https://oauth2.googleapis.com/token | jq -r '.access_token')
     ```
+
 2. Get your Google Analytics property ID. You can find this in the Google Analytics Admin section under **Property Settings**. It usually looks like `G-XXXXXXXXXX`.
 
 3. Use the below curl command. Replace `YOUR_PROPERTY_ID` with your actual Google Analytics property ID and `YOUR_ACCESS_TOKEN` with the access token you created.
@@ -160,4 +161,4 @@ To validate that you can access the Google Analytics Data API:
     ]
     }
     ```
-
+    
