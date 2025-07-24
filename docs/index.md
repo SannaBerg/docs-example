@@ -10,7 +10,7 @@ To create a Google Cloud project:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/).
 
-2. Click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png){ width="300" }) in the top left corner.
+2. Click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png){ width="200" }) in the top left corner.
 
 3. Click on the **New Project** button.
 
