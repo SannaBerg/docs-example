@@ -2,7 +2,7 @@
 
 The [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1/rest) allows you to programmatically access your Google Analytics data. This can be useful if you want to do things like; automate data extraction, integrate analytics data into your applications, or perform advanced data analysis.
 
-This guide describes how to set up a Google Cloud project with the appropriate credentials to use the Google Analytics Data API.
+This guide describes how to set up a Google Cloud project with the appropriate credentials, to enable fetching data using the Google Analytics Data API.
 
 ## Step 1: Create Google Cloud Project
 
@@ -10,7 +10,7 @@ To create a Google Cloud project:
 
 1. Open the [Google Cloud Console](https://console.cloud.google.com/).
 
-2. Click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png)) in the top left corner.
+2. Click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png){ width="200" }) in the top left corner.
 
 3. Click on the **New Project** button.
 
@@ -18,11 +18,11 @@ To create a Google Cloud project:
 
 4. Enter the following information:
    
-   - **Project name**
-   - If applicable, your **Organization**.
-   - If applicable, a **Location**.
+      - **Project name**
+      - If applicable, your **Organization**.
+      - If applicable, a **Location**.
 
-    ![alt text](images/project-configuration.png)
+        ![alt text](images/project-configuration.png){ width="600" }
 
 5. Click **Create**, to create the project.
 
@@ -35,44 +35,56 @@ To create a Google Cloud project:
 
 To enable the Google Analytics Data API for your project:
 
-1. Click on the **Open Project Picker** button ![alt text](images/open-project-picker-button.png){ width="150" } in the top left corner and select your **new project**.
+1. The new Google Cloud project is not automatically opened in the Console. To open the project, click on the **Open Project Picker** button (![alt text](images/open-project-picker-button.png){ width="200" }) in the top left corner and select the project.
 
 2. Click on the hamburger menu in the top left corner and select **APIs & Services** > **Enable APIs & Services**.
+
+    ![alt text](images/apis-and-services.png){ width="400" }
 
 3. Click on the **+ Enable APIs and Services** button.
 
 4. Enter **Google Analytics Data API** in the search bar and press **Enter**.
-
-5. Select **Google Analytics Data API** from the results.
-
-6. Click **Enable** to enable the API for your project.
-
-
-## Step 3: Create a Service Account and Keys
-
-API credentials are required to authenticate your requests.
-
-To create a service account and generate a key:
-
-1.  Click on the hamburger menu in the top left corner and select **IAM & Admin** > **Service Accounts**.
-
-2.  Click the **+ Create Service Account** button.
-
-3.  Enter the **Service account name**, **Service account ID** and **Service account description**. Then click **Create and Continue**:
     
-4.  Set **Permissions** to **Owner**.
+    ![alt text](images/google-analytics-data-api.png)
 
-    !!! note
-        
-        You do not need to set any **Principals**.
+5. Click on **Google Analytics Data API**.
 
-5.  Click **Done** to create the service account.
+6. Click on the **Enable** button, to enable the API for your project.
 
-6.  Click on the newly created service account.
+
+## Step 3: Create Service Account and Keys
+
+API credentials are required to authenticate your requests. To create a service account and generate a key:
+
+1. Click on the hamburger menu in the top left corner and select **IAM & Admin** > **Service Accounts**.
+
+    ![alt text](images/service-accounts.png){ width="400" }
+
+2. Click the **+ Create Service Account** button.
+
+3. In the **Create service account** field, fill in fields:
+
+    - **Service account name**
+    - **Service account ID** (generated automatically)
+    - **Service account description**.
+
+    ![alt text](images/create-service-account.png){ width="500" }
+
+4. Click **Create and continue**.
+
+5. Set **Permissions** to **Owner**.
+
+    ![alt text](images/permissions-owner.png){ width="600" }
+
+6. Do not set any **Principals with access**.
+
+7. Click **Done** to create the service account.
+
+8. Click on the newly created service account.
     
     For example: **example-documentation@exampledocumentation.iam.gserviceaccount.com**.
 
-7.  Click **Add key** > **Create new key** and select **JSON**. A JSON file with the key is downloaded to your computer.
+9.  Click **Add key** > **Create new key** and select **JSON**. A JSON file with the key is downloaded to your computer.
 
     !!! warning
         
@@ -84,30 +96,35 @@ For the service account to access your Google Analytics data, you need to grant 
 
 To grant access to the service account:
 
-1. Open the Google Analytics 4 property that you want to connect to.
+1. Open [Google Analytics](https://analytics.google.com/).
 
-2. Click on **Admin** in the bottom left corner.
+2. Open the Google Analytics property that you want to connect to. Select the name of the property in the top right of Google Analytics. In the following image, the property is called **GA4 - Google Merch Shop**.
 
-3. In the **Property** column, click on **Property Access Management**.
+    ![alt text](images/select-property.png){ width="550" }
 
-4. Click the **+** button to add a new user.
+3. Click on **Admin** in the bottom left corner.
 
-5. Enter the service account client-email address, for example: **example-documentation@exampledocumentation.iam.gserviceaccount.com**.
+4. In the **Property** column, click on **Property Access Management**.
 
-!!! note
-    
-    You can share this email account with business partners and other users that you want to have access to your analytics data. There are no secrets or keys included in the email address.
+    ![alt text](images/property-access-management.png){ width="300" }
+
+5. Click the **+** button to add a new user.
+
+6. Enter the service account, in this example **example-documentation@exampledocumentation.iam.gserviceaccount.com**, and then click **Add**.
+
+    !!! note
+        
+        You can share this email account with business partners and other users that you want to have access to your analytics data. There are no secrets or keys included in the email address.
 
 ## Step 5: Validation
 
-You can validate that you can get data from the Google Analytics Data API by querying the number of active users in the last 7 days using curl and the Google Analytics Data API (GA4) endpoint `runReport`.
+You should now be able to get data by calling the Google Analytics Data API. To validate this, we will query the number of active users in the last 7 days by calling the `runReport` endpoint using curl.
 
-The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, events for a Google Analytics property. For information about the request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation.
+The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. For information about the request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation.
 
+To call `runReport` using curl:
 
-To validate that you can access the Google Analytics Data API:
-
-1. Create an access token using the service account key file you downloaded earlier. You can use the Google OAuth 2.0 Playground or a command line tool like `curl` to obtain an access token:
+1. Create an access token using the JSON service account key file you downloaded in [Create Service Account and Keys](#step-3-create-service-account-and-keys). You can use `curl` to obtain an access token as shown below. Replace `YOUR_KEY_FILE.json` with the path to your service account key file.
 
     ```bash
     export GOOGLE_APPLICATION_CREDENTIALS="YOUR_KEY_FILE.json"
@@ -128,9 +145,9 @@ To validate that you can access the Google Analytics Data API:
     https://oauth2.googleapis.com/token | jq -r '.access_token')
     ```
 
-2. Get your Google Analytics property ID. You can find this in the Google Analytics Admin section under **Property Settings**. It usually looks like `G-XXXXXXXXXX`.
+2. Get your Google Analytics **Property ID**. You can find it in the Google Analytics **Admin** section under **Property Settings**. It has the following format: `G-XXXXXXXXXX`.
 
-3. Use the below curl command. Replace `YOUR_PROPERTY_ID` with your actual Google Analytics property ID and `YOUR_ACCESS_TOKEN` with the access token you created.
+3. Use the below curl command to make the call. Replace `YOUR_PROPERTY_ID` with your Google Analytics property ID, and `YOUR_ACCESS_TOKEN` with the access token you created.
 
     ```bash
     curl -X POST \
@@ -143,8 +160,9 @@ To validate that you can access the Google Analytics Data API:
         "dateRanges": [{"startDate": "7daysAgo", "endDate": "today"}]
     }'
     ```
+    In the above example we use fields `dimension`, `metric`, and `dateRange` to specify the data we want to retrieve. The dimensions are `date` and `country`, the metric is `activeUsers`, and the date range is set to the last 7 days. More fields can be added to the request, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation for more information.
 
-    The output will looks as shown below. For more information on the respons structure see the Google documentation [RunReportResponse](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/RunReportResponse).
+4. You should receive an output similar to what is shown below. For more information on the respons structure of `runReport` see the [RunReportResponse](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/RunReportResponse) documentation.
 
     ```json
     {
