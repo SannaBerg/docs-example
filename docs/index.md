@@ -1,4 +1,4 @@
-# Access Google Analytics Data Programmatically
+# Enable Programmatic Access to Google Analytics Data
 
 The [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1/rest) allows you to programmatically access your Google Analytics data. This can be useful if you want to do things like; automate data extraction, integrate analytics data into your applications, or perform advanced data analysis.
 
@@ -126,7 +126,7 @@ To grant access to the service account:
 
 You should now be able to access data by calling the Google Analytics Data API. To validate this, we will query the number of active users in the last 7 days by calling the `runReport` endpoint using curl.
 
-The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. This guide does not cover the full details of how to use the Google Analytics API. For full information on the endpoints request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation. For instructions on how to work with the Google Analytics Data API, see the [Google Analytics Data API documentation](https://developers.google.com/analytics/devguides/reporting/data/v1).
+The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. This guide does not cover the full details of how to use the Google Analytics Data API. For full information on the endpoints request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation. For instructions on how to work with the Google Analytics Data API, see the [Google Analytics Data API documentation](https://developers.google.com/analytics/devguides/reporting/data/v1).
 
 To call `runReport` using curl:
 
