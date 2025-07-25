@@ -6,8 +6,9 @@ This guide describes how to set up a Google Cloud project with the appropriate c
 
 ## Prerequisites
 
+- A [Google Cloud account](https://cloud.google.com/free).
 - A [Google Analytics property](https://support.google.com/analytics/answer/9355666?hl=en) to set up access to.
-- gcloud command line tool installed. See the [gcloud installation guide](https://cloud.google.com/sdk/docs/install) for instructions.
+- **gcloud** command line tool installed. See the [gcloud installation guide](https://cloud.google.com/sdk/docs/install) for instructions.
 
 ## Step 1: Create Google Cloud Project
 
@@ -95,7 +96,7 @@ API credentials are required to authenticate your requests. To create a service 
         
         Make sure that you store the key safely. This key provides access to all Google Analytics properties that you have granted.
 
-## Step 4:Grant Access to the Service Account
+## Step 4: Grant Access to the Service Account
 
 For the service account to access your Google Analytics data, you need to grant access to the Google Analytics property.
 
@@ -125,11 +126,11 @@ To grant access to the service account:
 
 You should now be able to access data by calling the Google Analytics Data API. To validate this, we will query the number of active users in the last 7 days by calling the `runReport` endpoint using curl.
 
-The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. For full information on the endpoints request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation.
+The `runReport` endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. This guide does not cover the full details of how to use the Google Analytics API. For full information on the endpoints request and response structure, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation. For instructions on how to work with the Google Analytics Data API, see the [Google Analytics Data API documentation](https://developers.google.com/analytics/devguides/reporting/data/v1).
 
 To call `runReport` using curl:
 
-1. Create an access token using gcloud and the JSON service account key file you downloaded in [Create Service Account and Keys](#step-3-create-service-account-and-keys). 
+1. Create an access token using **gcloud** and the JSON service account key file you downloaded in [Create Service Account and Keys](#step-3-create-service-account-and-keys). 
    
     Execute the commands below in your terminal. Replace `your-service-account-key.json` with the path to your service account key file.
 
@@ -139,9 +140,9 @@ To call `runReport` using curl:
     gcloud auth print-access-token
     ```
 
-    This will print the token you can use in the `Authorization: Bearer <YOUR_ACCESS_TOKEN>` header.
+    This will print the token to be used in the `Authorization: Bearer <YOUR_ACCESS_TOKEN>` header.
 
-2. Get your Google Analytics **Property ID**. You can find it in the Google Analytics **Admin** section under **Property Settings**. It has the following format: `G-XXXXXXXXXX`.
+2. Get your Google Analytics **Property ID**. You can find it in the Google Analytics **Admin** section under **Property Settings**. It has the following format: **G-XXXXXXXXXX**.
 
 3. Use the below curl command to make the call. Replace `YOUR_PROPERTY_ID` with your Google Analytics property ID, and `YOUR_ACCESS_TOKEN` with the access token you created.
 
@@ -156,29 +157,34 @@ To call `runReport` using curl:
         "dateRanges": [{"startDate": "7daysAgo", "endDate": "today"}]
     }'
     ```
-    In the above example we use fields `dimensions`, `metrics`, and `dateRanges` to specify the data we want to retrieve. The dimensions are `date` and `country`, the metric is `activeUsers`, and the date range is set to the last 7 days. 
+    In the above example we use fields `dimensions`, `metrics`, and `dateRanges` to specify the data we want to retrieve. The dimensions are `date` and `country`, the metric is `activeUsers`, and the date range is set to the last 7 days.
     
     More fields can be added to the request, see the [`runReport`](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport) documentation for more information.
 
-4. You should receive an output similar to what is shown below. For more information on the respons structure of `runReport` see the [RunReportResponse](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/RunReportResponse) documentation.
+4. Validate the response:
+   
+      -  **If successful**, you should receive an output similar to what is shown below. For more information on the response structure of `runReport` see the [RunReportResponse](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/RunReportResponse) documentation.
 
-    ```json
-    {
-    "dimensionHeaders": [
-        {"name": "date"},
-        {"name": "country"}
-    ],
-    "metricHeaders": [
-        {"name": "activeUsers", "type": "TYPE_INTEGER"}
-    ],
-    "rows": [
+        ```json
         {
-        "dimensionValues": [{"value": "20250717"}, {"value": "United States"}],
-        "metricValues": [{"value": "1234"}]
-        },
-        ...
-    ]
-    }
-    ```
+        "dimensionHeaders": [
+            {"name": "date"},
+            {"name": "country"}
+        ],
+        "metricHeaders": [
+            {"name": "activeUsers", "type": "TYPE_INTEGER"}
+        ],
+        "rows": [
+            {
+            "dimensionValues": [{"value": "20250717"}, {"value": "United States"}],
+            "metricValues": [{"value": "1234"}]
+            },
+            ...
+        ]
+        }
+        ```
 
+       - **If unsuccessful**, you will receive an error message. Common errors include:
+           - `insufficientPermissions`: This means that the service account does not have access to the Google Analytics property. Make sure you have granted access to the service account in [Create Service Account and Keys](#step-3-create-service-account-and-keys).
+           - `invalidParameter`: This means that there is an issue with the request parameters. Check that you have provided the correct property ID and that the request body is correctly formatted.
 
