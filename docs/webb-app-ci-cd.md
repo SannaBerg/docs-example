@@ -6,14 +6,16 @@ Continuous Integration and Continuous Delivery (CI/CD) for the Lingo web app aut
 
 ## CI/CD components
 
-- **Azure Key Vault**: Stores keys used by the app, such as Foundry Translator Resource API keys.
-- **Dockerfile**: A list of instructions used to build the Docker image. It contains the Python version, the path to **requirements.txt**, and instructions for starting the app.
-- **requirements.txt**: List of Python packages the app depends on.
-- **Azure Container Registry**: Stores Docker images. It's added as a Service Connection to the Azure DevOps project. 
-- **test.xml**: Documentation XML file used during integration tests.
-- **Azure App Services**: Host for the web app.
-- **azure-pipelines.yml**: Defines the build and deployment steps.
-- **Azure pipeline**: Builds, tests, and deploys your code as defined in azure-pipelines.yml.
+| Component | Description |
+| --- | --- |
+| **Azure Key Vault** | Stores keys used by the app, such as Foundry Translator Resource API keys. |
+| **Dockerfile** | A list of instructions used to build the Docker image. It contains the Python version, the path to **requirements.txt**, and instructions for starting the app. |
+| **requirements.txt** | List of Python packages the app depends on. |
+| **Azure Container Registry** | Stores Docker images. It's added as a Service Connection to the Azure DevOps project. |
+| **test.xml** | Documentation XML file used during integration tests. |
+| **Azure App Services** | Host for the web app. |
+| **azure-pipelines.yml** | Defines the build and deployment steps. |
+| **Azure Pipeline** | Builds, tests, and deploys your code as defined in **azure-pipelines.yml**. |
 
 ## Pipeline stages
 
@@ -72,35 +74,36 @@ To recive an email with a direct link to the error log on failure:
 Integration test logic is defined in the **azure-pipelines.yml** file.
 
 To expand testing:
+
 - To test a different file or endpoint, append a new command to your existing script block.
-
-  ```YML
-  - script: |
-          # ... (previous docker run logic) ...
-
-          echo "Test 1: Standard XML Translation"
-          curl -X POST http://localhost:8000/translate \
-              -H "Content-Type: application/xml" \
-              -d @tests/sample.xml --fail
-
-          echo "Test 2: Health Check"
-          curl -f http://localhost:8000/health || exit 1
-  ```
+   
+     ```YML
+     - script: |
+             # ... (previous docker run logic) ...
+   
+             echo "Test 1: Standard XML Translation"
+             curl -X POST http://localhost:8000/translate \
+                 -H "Content-Type: application/xml" \
+                 -d @tests/sample.xml --fail
+   
+             echo "Test 2: Health Check"
+             curl -f http://localhost:8000/health || exit 1
+     ```
 
 - To test complex logic, add a Python script to the **tests** folder. Update the **azure-pipelines.yml**  to install Python on the build agent and run the script after the container starts.
-  
-  ```YML
-  - task: UsePythonVersion@0
-        inputs:
-          versionSpec: '3.x'
-
-      - script: |
-          # Start container as before
-          docker run -d -p 8000:8000 --name test-app -e API_KEY=$(TRANSLATION-API-KEY) $(image)
-          sleep 10
-          
-          # Install dependencies and run the script
-          pip install requests
-          python tests/integration_test.py
-        displayName: 'Run Python Integration Tests'
-  ```
+   
+     ```YML
+     - task: UsePythonVersion@0
+           inputs:
+             versionSpec: '3.x'
+   
+         - script: |
+             # Start container as before
+             docker run -d -p 8000:8000 --name test-app -e API_KEY=$(TRANSLATION-API-KEY) $(image)
+             sleep 10
+             
+             # Install dependencies and run the script
+             pip install requests
+             python tests/integration_test.py
+           displayName: 'Run Python Integration Tests'
+     ```
