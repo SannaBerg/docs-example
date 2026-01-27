@@ -64,7 +64,7 @@ To recive an email with a direct link to the error log on failure:
 
 ### Update build requirements
 
-- **Python version**: Open the **Dockerfile** and update the `FROM python:<version>-slim` parameter.
+- **Python version**: Open the **`Dockerfile`** and update the `FROM python:<version>-slim` parameter.
 
 - **Packages**: Open **`requirements.txt`** to add, update, or remove package dependencies.
 
