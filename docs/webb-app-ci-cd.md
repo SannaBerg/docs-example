@@ -8,17 +8,17 @@ Continuous Integration and Continuous Delivery (CI/CD) for the Lingo web app aut
 
 - **Azure Key Vault**: Stores keys used by the app, such as Foundry Translator Resource API keys.
 
-- **Dockerfile**: A list of instructions used to build the Docker image. It contains the Python version, the path to **requirements.txt**, and instructions for starting the app.
-- **requirements.txt**: List of Python packages the app depends on.
+- **Dockerfile**: A list of instructions used to build the Docker image. It contains the Python version, the path to `requirements.txt`, and instructions for starting the app.
+- **`requirements.txt`**: List of Python packages the app depends on.
 - **Azure Container Registry**: Stores Docker images. It is added as a Service Connection to the Azure DevOps project.
-- **test.xml**: Documentation XML file used during integration tests.
+- **`test.xml`**: Documentation XML file used during integration tests.
 - **Azure App Services**: Host for the web app.
-- **azure-pipelines.yml**: Defines the build and deployment steps. 
-- **Azure Pipeline**: Builds, tests, and deploys your code as defined in **azure-pipelines.yml**.
+- **`azure-pipelines.yml`**: Defines the build and deployment steps. 
+- **Azure Pipeline**: Builds, tests, and deploys your code as defined in **`azure-pipelines.yml`**.
 
 ## Pipeline stages
 
-The **azure-pipelines.yml** file at the root of the repository defines the pipeline stages.
+The **`azure-pipelines.yml`** file at the root of the repository defines the pipeline stages.
 
 ### Trigger
 
@@ -30,7 +30,7 @@ The pipeline downloads the code and runs `docker build`. If successful, the Dock
 
 ### Stage 2: Integration test
 
-This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault to download keys as masked environment variables. The pipeline runs the Docker container locally and calls the local server to translate the **test.xml** file. If the test fail, the pipeline stops. Any non-200 HTTP response code fails the stage, you can view the details in the error logs.
+This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault to download keys as masked environment variables. The pipeline runs the Docker container locally and calls the local server to translate the **`test.xml`** file. If the test fail, the pipeline stops. Any non-200 HTTP response code fails the stage, you can view the details in the error logs.
 
 ### Stage 3: Deployment
 
@@ -66,11 +66,11 @@ To recive an email with a direct link to the error log on failure:
 
 - **Python version**: Open the **Dockerfile** and update the `FROM python:<version>-slim` parameter.
 
-- **Packages** Open **requirements.txt** to add, update, or remove package dependencies.
+- **Packages**: Open **`requirements.txt`** to add, update, or remove package dependencies.
 
 ### Add integration tests
 
-Integration test logic is defined in the **azure-pipelines.yml** file.
+Integration test logic is defined in the **`azure-pipelines.yml`** file.
 
 To expand testing:
 
@@ -89,7 +89,7 @@ To expand testing:
              curl -f http://localhost:8000/health || exit 1
      ```
 
-- To test complex logic, add a Python script to the **tests** folder. Update the **azure-pipelines.yml**  to install Python on the build agent and run the script after the container starts.
+- To test complex logic, add a Python script to the **tests** folder. Update the **`azure-pipelines.yml`**  to install Python on the build agent and run the script after the container starts.
    
      ```YML
      - task: UsePythonVersion@0
