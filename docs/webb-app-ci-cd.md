@@ -1,3 +1,4 @@
+
 # CI/CD for the Lingo web app
 
 ## Introduction
