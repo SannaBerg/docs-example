@@ -49,7 +49,7 @@ To identify and fix the reason for the pipeline failure:
 
 ### Set up notifications
 
-To recive an email with a direct link to the error log on failure:
+To receive an email with a direct link to the error log on failure:
 
 1. Go to **Azure DevOps portal**. 
 2. Select **Project Settings** > **Notifications**.
