@@ -14,15 +14,15 @@ Continuous Integration and Continuous Delivery (CI/CD) for the Lingo web app aut
 - **`test.xml`**: Documentation XML file used during integration tests.
 - **Azure App Services**: Host for the web app.
 - **`azure-pipelines.yml`**: Defines the build and deployment steps. 
-- **Azure Pipeline**: Builds, tests, and deploys your code as defined in **`azure-pipelines.yml`**.
+- **Azure Pipeline**: Builds, tests, and deploys your code as defined in `azure-pipelines.yml`.
 
 ## Pipeline stages
 
-The **`azure-pipelines.yml`** file at the root of the repository defines the pipeline stages.
+The `azure-pipelines.yml` file at the root of the repository defines the pipeline stages.
 
 ### Trigger
 
-The pipeline triggers when code merges to the **main** branch. 
+The pipeline triggers when code merges to the `main` branch. 
 
 ### Stage 1: Build
 
@@ -30,7 +30,7 @@ The pipeline downloads the code and runs `docker build`. If successful, the Dock
 
 ### Stage 2: Integration test
 
-This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault to download keys as masked environment variables. The pipeline runs the Docker container locally and calls the local server to translate the **`test.xml`** file. If the test fail, the pipeline stops. Any non-200 HTTP response code fails the stage, you can view the details in the error logs.
+This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault to download keys as masked environment variables. The pipeline runs the Docker container locally and calls the local server to translate the `test.xml` file. If the test fail, the pipeline stops. Any non-200 HTTP response code fails the stage, you can view the details in the error logs.
 
 ### Stage 3: Deployment
 
@@ -40,19 +40,24 @@ After a successful integration test, the pipeline deploys the Docker image to th
 
 ### View error logs
 
+To identify and fix the reason for the pipeline failure:
+
 1. Select **Pipelines** and select the **lingo-azure-pipeline**.
 2. In the list of runs, select the failed run marked with a red X. 
-3. In the run summary, select the failed job. For example, RunTest. 
+3. In the run summary, select the failed job. For example, `RunTest`. 
 4. In the task list, select the failed task, highlighted in red. The log pane displays the console output.
 
 ### Set up notifications
 
 To recive an email with a direct link to the error log on failure:
+
 1. Go to **Azure DevOps portal**. 
 2. Select **Project Settings** > **Notifications**.
 3. Select **New subscription**, and then select **A build fails**. 
 
 ### Edit keys
+
+To manage app keys:
 
 1. Go to **Azure Portal**.
 2. Search for and select **Key Vaults**.
@@ -64,22 +69,24 @@ To recive an email with a direct link to the error log on failure:
 
 ### Update build requirements
 
-- **Python version**: Open the **`Dockerfile`** and update the `FROM python:<version>-slim` parameter.
+- **Python version**: Open the `Dockerfile` and update the `FROM python:<version>-slim` parameter.
 
-- **Packages**: Open **`requirements.txt`** to add, update, or remove package dependencies.
+- **Packages**: Open `requirements.txt` to add, update, or remove package dependencies.
 
 ### Add integration tests
 
-Integration test logic is defined in the **`azure-pipelines.yml`** file.
+Integration test logic is defined in the `azure-pipelines.yml` file.
 
 To expand testing:
 
-- To test a different file or endpoint, append a new command to your existing script block.
+- To test different files or endpoints, add new commands in the script block with the `POST http://localhost:8000/translate` call to translate the `test.xml` file. See code exampel below.
    
      ```YML
      - script: |
-             # ... (previous docker run logic) ...
-   
+
+             # ... (Docker run logic) ...
+
+             # Call to translate test.xml.     
              echo "Test 1: Standard XML Translation"
              curl -X POST http://localhost:8000/translate \
                  -H "Content-Type: application/xml" \
@@ -89,7 +96,7 @@ To expand testing:
              curl -f http://localhost:8000/health || exit 1
      ```
 
-- To test complex logic, add a Python script to the **`tests`** folder. Update the **`azure-pipelines.yml`**  to install Python on the build agent and run the script after the container starts.
+- To test complex logic, add a Python script to the `tests` folder. Update the `azure-pipelines.yml` adding a new script block with commands to install Python on the build agent and run the script after the container starts. See code exampel below.
    
      ```YML
      - task: UsePythonVersion@0
