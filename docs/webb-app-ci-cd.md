@@ -6,16 +6,15 @@ Continuous Integration and Continuous Delivery (CI/CD) for the Lingo web app aut
 
 ## CI/CD components
 
-| Component | Description |
-| --- | --- |
-| **Azure Key Vault** | Stores keys used by the app, such as Foundry Translator Resource API keys. |
-| **Dockerfile** | A list of instructions used to build the Docker image. It contains the Python version, the path to **requirements.txt**, and instructions for starting the app. |
-| **requirements.txt** | List of Python packages the app depends on. |
-| **Azure Container Registry** | Stores Docker images. It's added as a Service Connection to the Azure DevOps project. |
-| **test.xml** | Documentation XML file used during integration tests. |
-| **Azure App Services** | Host for the web app. |
-| **azure-pipelines.yml** | Defines the build and deployment steps. |
-| **Azure Pipeline** | Builds, tests, and deploys your code as defined in **azure-pipelines.yml**. |
+- **Azure Key Vault**: Stores keys used by the app, such as Foundry Translator Resource API keys.
+
+- **Dockerfile**: A list of instructions used to build the Docker image. It contains the Python version, the path to **requirements.txt**, and instructions for starting the app.
+- **requirements.txt**: List of Python packages the app depends on.
+- **Azure Container Registry**: Stores Docker images. It's added as a Service Connection to the Azure DevOps project.
+- **test.xml**: Documentation XML file used during integration tests.
+- **Azure App Services**: Host for the web app.
+- **azure-pipelines.yml**: Defines the build and deployment steps. 
+- **Azure Pipeline**: Builds, tests, and deploys your code as defined in **azure-pipelines.yml**.
 
 ## Pipeline stages
 
