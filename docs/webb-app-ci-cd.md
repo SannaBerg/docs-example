@@ -10,7 +10,7 @@ Continuous Integration and Continuous Delivery (CI/CD) for the Lingo web app aut
 
 - **Dockerfile**: A list of instructions used to build the Docker image. It contains the Python version, the path to **requirements.txt**, and instructions for starting the app.
 - **requirements.txt**: List of Python packages the app depends on.
-- **Azure Container Registry**: Stores Docker images. It's added as a Service Connection to the Azure DevOps project.
+- **Azure Container Registry**: Stores Docker images. It is added as a Service Connection to the Azure DevOps project.
 - **test.xml**: Documentation XML file used during integration tests.
 - **Azure App Services**: Host for the web app.
 - **azure-pipelines.yml**: Defines the build and deployment steps. 
