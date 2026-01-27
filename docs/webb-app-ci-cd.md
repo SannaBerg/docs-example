@@ -89,7 +89,7 @@ To expand testing:
              curl -f http://localhost:8000/health || exit 1
      ```
 
-- To test complex logic, add a Python script to the **tests** folder. Update the **`azure-pipelines.yml`**  to install Python on the build agent and run the script after the container starts.
+- To test complex logic, add a Python script to the **`tests`** folder. Update the **`azure-pipelines.yml`**  to install Python on the build agent and run the script after the container starts.
    
      ```YML
      - task: UsePythonVersion@0
