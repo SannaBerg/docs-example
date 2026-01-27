@@ -22,7 +22,7 @@ The `azure-pipelines.yml` file at the root of the repository defines the pipelin
 
 ### Trigger
 
-The pipeline triggers when code merges to the `main` branch. 
+The pipeline triggers when the code is merged to the `main` branch. 
 
 ### Stage 1: Build
 
@@ -79,7 +79,7 @@ Integration test logic is defined in the `azure-pipelines.yml` file.
 
 To expand testing:
 
-- To test different files or endpoints, add new commands in the script block with the `POST http://localhost:8000/translate` call to translate the `test.xml` file. See code exampel below.
+- To test different files or endpoints, add new commands in the script block with the `Test 1: Standard XML Translation`. For example, see addition of `Test 2: Health Check` below.
    
      ```YML
      - script: |
@@ -96,7 +96,7 @@ To expand testing:
              curl -f http://localhost:8000/health || exit 1
      ```
 
-- To test complex logic, add a Python script to the `tests` folder. Update the `azure-pipelines.yml` adding a new script block with commands to install Python on the build agent and run the script after the container starts. See code exampel below.
+- To test complex logic, add a Python script to the `tests` folder. Add a new `script` block to `azure-pipelines.yml` with commands to install Python on the build agent and run the script after the container starts. For example, see task `UsePythonVersion@0` below.
    
      ```YML
      - task: UsePythonVersion@0
