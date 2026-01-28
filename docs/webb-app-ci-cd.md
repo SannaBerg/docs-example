@@ -8,13 +8,13 @@ The Continuous Integration and Continuous Delivery (CI/CD) pipeline for the Tran
 
 - **Azure Key Vault**: Stores the app’s keys and secrets, such as the Foundry Translator Resource API key.
 
-- **Dockerfile**: Specifies how to build the Docker image, including the Python version, the path to `requirements.txt`, and the app's startup commands.
+- **`Dockerfile`**: Specifies how to build the Docker image, including the Python version, the path to `requirements.txt`, and the app's startup commands.
 - **`requirements.txt`**: Lists the Python packages the app depends on.
 - **Azure Container Registry**: Stores Docker images. Added as a Service Connection to the Azure DevOps project.
 - **`test.xml`**: Documentation XML file used during integration tests.
 - **Azure App Services**: Hosts the web app.
 - **`azure-pipelines.yml`**: Defines the CI/CD pipeline, including its stages, jobs, steps, triggers, and configuration.
-- **Azure Pipeline**: Builds, tests, and deploys the code as defined in `azure-pipelines.yml`.
+- **Azure Pipelines**: Builds, tests, and deploys the code as defined in `azure-pipelines.yml`. 
 
 ## Pipeline stages
 
@@ -81,7 +81,7 @@ To update, add, or remove app keys:
 
 Integration test logic is defined in the `azure-pipelines.yml` file.
 
-To test additiona files or endpoints:
+To test additional files or endpoints:
 
 1. Locate the `script` block that contains the `# Test endpoints` comment.
 2. Add the new test in that `script`  block. Follow the `echo` and `curl` pattern used by `"Test 1: Standard XML Translation"` and `Test 2: Health Check`.
@@ -104,8 +104,8 @@ Example:
 
 To test complex logic: 
 
-1. Add a Python script to the `tests` folder.
-2. Add a new `script` block with commands to install Python on the build agent and run your script after the container starts. Follow the pattern used for `task: UsePythonVersion@0`.
+1. Add a Python script to the `tests` folder in the repository.
+2. Add a new `script` block in `azure-pipelines.yml` with commands to install Python on the build agent and run your script after the container starts. Follow the pattern used for `task: UsePythonVersion@0`.
 
 Example:
 ```YML
@@ -123,3 +123,11 @@ Example:
       python tests/integration_test.py
       displayName: 'Run Python Integration Tests'
 ```
+
+## Read More
+
+- [Azure Pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
+- [Azure Container Registry](https://learn.microsoft.com/en-us/azure/container-registry/)
+- [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/)
+- [Azure App Services](https://learn.microsoft.com/en-us/azure/app-service/)
+- [Docker, Building an image](https://docs.docker.com/get-started/docker-concepts/building-images/)
