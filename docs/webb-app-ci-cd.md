@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Continuous Integration and Continuous Delivery (CI/CD) for the Lingo web app automates the build, test, and deploy processes using Azure DevOps. This ensures consistent build environments, verifies functionality through integration tests, and deploys the app to Azure App Service.
+The Continuous Integration and Continuous Delivery (CI/CD) pipeline for the Lingo web app automates the build, test, and deploy processes using Azure DevOps services. It ensures consistent build environments, verifies functionality through integration tests, and continuously deploys the app to Azure App Service.
 
 ## CI/CD components
 
-- **Azure Key Vault**: Stores keys used by the app, such as Foundry Translator Resource API keys.
+- **Azure Key Vault**: Stores the app’s keys and secrets, such as the Foundry Translator Resource API key.
 
 - **Dockerfile**: A list of instructions used to build the Docker image. It contains the Python version, the path to `requirements.txt`, and instructions for starting the app.
 - **`requirements.txt`**: List of Python packages the app depends on.
