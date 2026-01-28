@@ -1,0 +1,91 @@
+trigger:
+- main
+
+variables:
+  dockerRegistryServiceConnection: 'MyACRConnection'
+  imageRepository: 'python-web-app'
+  containerRegistry: 'myregistry.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+  azureSubscription: 'MyAzureSubscriptionConnection'
+  webAppName: 'my-python-app-service'
+  keyVaultName: 'my-app-vault' # The name of the Azure Key Vault
+
+stages:
+- stage: Build
+  displayName: Build Stage
+  jobs:
+  - job: BuildAndPush
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: "Build and Push Image"
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+
+- stage: IntegrationTest
+  displayName: Integration Test Stage
+  dependsOn: Build
+  jobs:
+  - job: RunTest
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    # 1. Fetch secrets from Key Vault to use in this test job
+    - task: AzureKeyVault@2
+      inputs:
+        azureSubscription: $(azureSubscription)
+        KeyVaultName: $(keyVaultName)
+        SecretsFilter: '*' # This makes secrets available as variables (e.g., $(TRANSLATION-API-KEY))
+
+
+      # ------------ Start Containers ------------
+    - script: |
+        echo "Starting containers for integration tests..."
+
+        # Example: array of containers you might run
+        containers=("test-app")
+
+        # First container
+        docker run -d -p 8000:8000 \
+          --name test-app \
+          -e API_KEY=$(TRANSLATION_API_KEY) \
+          $(containerRegistry)/$(imageRepository):$(tag)
+
+        echo "All test containers started."
+        sleep 10
+      displayName: "Start containers"
+
+
+    - script: |
+        # Tests the translate endpoint passing the test.xml file. Any non-200 HTTP response fails this stage.
+        echo "Test 1: Standard XML Translation"
+        curl -X POST http://localhost:8000/translate \
+             -H "Content-Type: application/xml" \
+             -d @tests/test.xml --fail 
+
+    - script: |
+        docker stop test-app && docker rm test-app
+      displayName: 'Cleanup Test Container'
+      condition: always() # Runs even if the curl command fails
+
+- stage: Deploy
+  displayName: Deploy Stage
+  dependsOn: IntegrationTest
+  condition: succeeded()
+  jobs:
+  - job: DeployToAzure
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureWebAppContainer@1
+      inputs:
+        azureSubscription: $(azureSubscription)
+        appName: $(webAppName)
+        containers: $(containerRegistry)/$(imageRepository):$(tag)
