@@ -36,7 +36,7 @@ The pipeline downloads the code and runs `docker build`. If successful, the Dock
 
 ### Stage 2: Integration test
 
-This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault and download the required keys as masked environment variables. The pipeline then runs the Docker container locally and calls the local server to translate the `test.xml` file. If the test fails, the pipeline stops. Any non-200 HTTP response fails this stage, you can view the details in the [pipeline logs](#troubleshoot-pipeline-failures).
+This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault and download the required keys as masked environment variables. The pipeline then runs the Docker container locally followed by the tests in the `script` blocks. For information on what each test does, see comments in `azure-pipelines.yml`. If any test fails, the pipeline stops, and you can view the details in the [pipeline logs](#troubleshoot-pipeline-failures). 
 
 ### Stage 3: Deployment
 
@@ -98,11 +98,11 @@ Example:
    # Test endpoints
    # ... (Docker run logic) ...
 
-   # Call to translate test.xml.     
+   # Tests the translate endpoint passing the test.xml file. Any non-200 HTTP response fails this stage.    
    echo "Test 1: Standard XML Translation"
    curl -X POST http://localhost:8000/translate \
       -H "Content-Type: application/xml" \
-      -d @tests/sample.xml --fail
+      -d @tests/test.xml --fail
 
    echo "Test 2: Health Check"
    curl -f http://localhost:8000/health || exit 1
