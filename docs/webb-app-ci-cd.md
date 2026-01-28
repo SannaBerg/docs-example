@@ -21,7 +21,7 @@ See [Read more](#read-more) for additional details about these services and conc
 
 ## Pipeline stages
 
-The `azure-pipelines.yml` file at the root of the repository defines the pipeline stages.
+The `azure-pipelines.yml` file defines the pipeline stages.
 
 ### Trigger
 
