@@ -8,13 +8,13 @@ The Continuous Integration and Continuous Delivery (CI/CD) pipeline for the Ling
 
 - **Azure Key Vault**: Stores the app’s keys and secrets, such as the Foundry Translator Resource API key.
 
-- **Dockerfile**: A list of instructions used to build the Docker image. It contains the Python version, the path to `requirements.txt`, and instructions for starting the app.
-- **`requirements.txt`**: List of Python packages the app depends on.
-- **Azure Container Registry**: Stores Docker images. It is added as a Service Connection to the Azure DevOps project.
+- **Dockerfile**: Specifies how to build the Docker image, including the Python version, the path to `requirements.txt`, and the app's startup commands.
+- **`requirements.txt`**: Lists the Python packages the app depends on.
+- **Azure Container Registry**: Stores Docker images. Added as a Service Connection to the Azure DevOps project.
 - **`test.xml`**: Documentation XML file used during integration tests.
-- **Azure App Services**: Host for the web app.
-- **`azure-pipelines.yml`**: Defines the build and deployment steps. 
-- **Azure Pipeline**: Builds, tests, and deploys your code as defined in `azure-pipelines.yml`.
+- **Azure App Services**: Hosts the web app.
+- **`azure-pipelines.yml`**: Defines the CI/CD pipeline, including its stages, jobs, steps, triggers, and configuration.
+- **Azure Pipeline**: Builds, tests, and deploys the code as defined in `azure-pipelines.yml`.
 
 ## Pipeline stages
 
