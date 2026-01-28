@@ -73,9 +73,9 @@ To update, add, or remove app keys:
 2. Search for and select **Key Vaults**.
 3. Filter for **resource-group-translator** and select the key vault.
 4. Do one of the following:
-   - **Add a key**: Select **Create a key**.
-   - **Update a key**: Select **+ New Version**. 
-   - **Remove a key**: Select **Delete**.
+       - **Add a key**: Select **Create a key**.
+       - **Update a key**: Select **+ New Version**. 
+       - **Remove a key**: Select **Delete**.
 
 ### Update build requirements
 
