@@ -2,16 +2,19 @@
 
 ## Introduction
 
-The Continuous Integration and Continuous Delivery (CI/CD) pipeline for the Translator web app automates the build, test, and deploy processes using Azure DevOps services. It ensures consistent build environments, verifies functionality through integration tests, and continuously deploys the app to Azure App Service.
+The Continuous Integration and Continuous Delivery (CI/CD) pipeline for the Translator web app automates the build, test, and deploy processes using Azure services. It ensures consistent build environments, verifies functionality through integration tests, and continuously deploys the app to Azure App Service.
 
 ## CI/CD components
 
-- Files at the root of the repository:
+Files at the root of the repository:
        
   - **`azure-pipelines.yml`**: Defines the CI/CD pipeline, including its stages, jobs, steps, triggers, and configuration.
   - **`Dockerfile`**: Specifies how to build the Docker image, including the Python version, the path to `requirements.txt`, and the app's startup commands.
   - **`requirements.txt`**: Lists the Python packages the app depends on.
   - **`test.xml`**: Documentation XML file used during integration tests.
+
+Azure services:
+
 - **Azure Pipelines**: Builds, tests, and deploys the code as defined in `azure-pipelines.yml`.
 - **Azure Key Vault**: Stores the app’s keys and secrets, such as the Foundry Translator Resource API key.
 - **Azure Container Registry**: Stores Docker images. Added as a Service Connection to the Azure DevOps project.
