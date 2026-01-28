@@ -111,7 +111,7 @@ Example:
 To test complex logic: 
 
 1. Add a Python script to the `tests` folder in the repository.
-2. Add a new `script` block in `azure-pipelines.yml` with commands to install Python on the build agent and run your script after the container starts. Follow the pattern used for `task: UsePythonVersion@0`.
+2. Add a new `script` block in `azure-pipelines.yml` with commands to install Python on the build agent and run your script after the container starts. Follow the pattern used in `task: UsePythonVersion@0`.
 
 Example:
 ```YML
