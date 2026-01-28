@@ -56,7 +56,7 @@ To receive an email with a direct link to the failed pipeline run:
 1. Sign in to the **[Azure DevOps](https://dev.azure.com/)** portal.  
 2. Select **Project Settings** > **Notifications**.
 3. Select **+ New subscription**.
-4. Select **A build fails** as the **Template**, and then select **Next**
+4. Select **A build fails** as the **Template**, and then select **Next**.
 5. Select **Finish**.
 
 ### Edit app keys
