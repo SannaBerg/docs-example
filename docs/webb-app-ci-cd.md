@@ -84,7 +84,7 @@ Integration test logic is defined in the `azure-pipelines.yml` file.
 To test additional files or endpoints:
 
 1. Locate the `script` block that contains the `# Test endpoints` comment.
-2. Add the new test in that `script`  block. Follow the `echo` and `curl` pattern used by `"Test 1: Standard XML Translation"` and `Test 2: Health Check`.
+2. Add the new test in that `script`  block. Follow the `echo` and `curl` pattern used in `"Test 1: Standard XML Translation"` and `"Test 2: Health Check"`.
 
 Example:
 ```YML
