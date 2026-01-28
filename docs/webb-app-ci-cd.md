@@ -22,15 +22,15 @@ The `azure-pipelines.yml` file at the root of the repository defines the pipelin
 
 ### Trigger
 
-The pipeline triggers when the code is merged to the `main` branch. 
+The pipeline triggers when code is merged to the `main` branch. 
 
 ### Stage 1: Build
 
-The pipeline downloads the code and runs `docker build`. If successful, the Docker image is pushed to the Azure Container Registry. If the build fails, the pipeline stops, and you can view the details in the error logs.
+The pipeline downloads the code and runs `docker build`. If successful, the Docker image is pushed to the Azure Container Registry. If the build fails, the pipeline stops, and you can view the details in the [error logs](#view-error-logs).
 
 ### Stage 2: Integration test
 
-This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault to download keys as masked environment variables. The pipeline runs the Docker container locally and calls the local server to translate the `test.xml` file. If the test fail, the pipeline stops. Any non-200 HTTP response code fails the stage, you can view the details in the error logs.
+This stage runs if the build is successful. The `AzureKeyVault@2` task connects to Azure Key Vault and download the required keys as masked environment variables. The pipeline then runs the Docker container locally and calls the local server to translate the `test.xml` file. If the test fails, the pipeline stops. Any non-200 HTTP response fails this stage, you can view the details in the [error logs](#view-error-logs).
 
 ### Stage 3: Deployment
 
