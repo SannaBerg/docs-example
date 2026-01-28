@@ -16,6 +16,8 @@ The Continuous Integration and Continuous Delivery (CI/CD) pipeline for the Tran
 - **`azure-pipelines.yml`**: Defines the CI/CD pipeline, including its stages, jobs, steps, triggers, and configuration.
 - **Azure Pipelines**: Builds, tests, and deploys the code as defined in `azure-pipelines.yml`. 
 
+See [Read more](#read-more) for additional details about these services and concepts.
+
 ## Pipeline stages
 
 The `azure-pipelines.yml` file at the root of the repository defines the pipeline stages.
