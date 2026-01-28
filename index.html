@@ -1,0 +1,737 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="webb-app-ci-cd/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Example Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-B7ZFRMHGEK"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-B7ZFRMHGEK",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-B7ZFRMHGEK",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#enable-programmatic-access-to-google-analytics-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Example Documentation" class="md-header__button md-logo" aria-label="Example Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Example Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Enable Programmatic Access to Google Analytics Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Example Documentation" class="md-nav__button md-logo" aria-label="Example Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Example Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enable Programmatic Access to Google Analytics Data
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enable Programmatic Access to Google Analytics Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-google-cloud-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create Google Cloud Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-enable-google-analytics-data-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Enable Google Analytics Data API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-create-service-account-and-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Service Account and Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-grant-access-to-the-service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Grant Access to the Service Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="webb-app-ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD for the Translator web app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-google-cloud-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create Google Cloud Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-enable-google-analytics-data-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Enable Google Analytics Data API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-create-service-account-and-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Service Account and Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-grant-access-to-the-service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Grant Access to the Service Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="enable-programmatic-access-to-google-analytics-data">Enable Programmatic Access to Google Analytics Data</h1>
+<p>The <a href="https://developers.google.com/analytics/devguides/reporting/data/v1/rest">Google Analytics Data API</a> allows you to programmatically access your Google Analytics data. This can be useful if you want to do things like; automate data extraction, integrate analytics data into your applications, or perform advanced data analysis.</p>
+<p>This guide describes how to set up a Google Cloud project with the appropriate credentials, to enable fetching data using the Google Analytics Data API.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>A <a href="https://cloud.google.com/free">Google Cloud account</a>.</li>
+<li>A <a href="https://support.google.com/analytics/answer/9355666?hl=en">Google Analytics property</a> to set up access to.</li>
+<li><strong>gcloud</strong> command line tool installed. See the <a href="https://cloud.google.com/sdk/docs/install">gcloud installation guide</a> for instructions.</li>
+</ul>
+<h2 id="step-1-create-google-cloud-project">Step 1: Create Google Cloud Project</h2>
+<p>To create a Google Cloud project:</p>
+<ol>
+<li>
+<p>Open the <a href="https://console.cloud.google.com/">Google Cloud Console</a>.</p>
+</li>
+<li>
+<p>Select the <strong>Open Project Picker</strong> button (<img alt="alt text" src="images/open-project-picker-button.png" width="200" />) in the top left corner.</p>
+</li>
+<li>
+<p>Select the <strong>New Project</strong> button.</p>
+<p><img alt="alt text" src="images/select-a-project.png" /></p>
+</li>
+<li>
+<p>Enter the following information:</p>
+<ul>
+<li><strong>Project name</strong></li>
+<li>If applicable, your <strong>Organization</strong>.</li>
+<li>
+<p>If applicable, a <strong>Location</strong>.</p>
+<p><img alt="alt text" src="images/project-configuration.png" width="600" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Select <strong>Create</strong>, to create the project.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have several Google accounts, make sure you are logged in with the account that you want to connect the project to.</p>
+</div>
+</li>
+</ol>
+<h2 id="step-2-enable-google-analytics-data-api">Step 2: Enable Google Analytics Data API</h2>
+<p>To enable the Google Analytics Data API for your project:</p>
+<ol>
+<li>
+<p>The new Google Cloud project is not automatically opened in the Console. To open the project, select the <strong>Open Project Picker</strong> button (<img alt="alt text" src="images/open-project-picker-button.png" width="200" />) in the top left corner and select the project.</p>
+</li>
+<li>
+<p>Select the hamburger menu in the top left corner and select <strong>APIs &amp; Services</strong> &gt; <strong>Enable APIs &amp; Services</strong>.</p>
+<p><img alt="alt text" src="images/apis-and-services.png" width="400" /></p>
+</li>
+<li>
+<p>Select the <strong>+ Enable APIs and Services</strong> button.</p>
+</li>
+<li>
+<p>Enter <strong>Google Analytics Data API</strong> in the search bar and press <strong>Enter</strong>.</p>
+<p><img alt="alt text" src="images/google-analytics-data-api.png" /></p>
+</li>
+<li>
+<p>Select <strong>Google Analytics Data API</strong>.</p>
+</li>
+<li>
+<p>Select the <strong>Enable</strong> button, to enable the API for your project.</p>
+</li>
+</ol>
+<h2 id="step-3-create-service-account-and-keys">Step 3: Create Service Account and Keys</h2>
+<p>API credentials are required to authenticate your requests. To create a service account and generate a key:</p>
+<ol>
+<li>
+<p>Select the hamburger menu in the top left corner and select <strong>IAM &amp; Admin</strong> &gt; <strong>Service Accounts</strong>.</p>
+<p><img alt="alt text" src="images/service-accounts.png" width="400" /></p>
+</li>
+<li>
+<p>Select the <strong>+ Create Service Account</strong> button.</p>
+</li>
+<li>
+<p>In the <strong>Create service account</strong> field, fill in fields:</p>
+<ul>
+<li><strong>Service account name</strong></li>
+<li><strong>Service account ID</strong> (generated automatically)</li>
+<li><strong>Service account description</strong>.</li>
+</ul>
+<p><img alt="alt text" src="images/create-service-account.png" width="500" /></p>
+</li>
+<li>
+<p>Select <strong>Create and continue</strong>.</p>
+</li>
+<li>
+<p>Set <strong>Permissions</strong> to <strong>Owner</strong>.</p>
+<p><img alt="alt text" src="images/permissions-owner.png" width="600" /></p>
+</li>
+<li>
+<p>Do not set any <strong>Principals with access</strong>.</p>
+</li>
+<li>
+<p>Select <strong>Done</strong> to create the service account.</p>
+</li>
+<li>
+<p>Select the newly created service account.</p>
+<p>For example: <strong>example-documentation@exampledocumentation.iam.gserviceaccount.com</strong>.</p>
+</li>
+<li>
+<p>Select <strong>Add key</strong> &gt; <strong>Create new key</strong> and select <strong>JSON</strong>. A JSON file with the key is downloaded to your computer.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure that you store the key safely. This key provides access to all Google Analytics properties that you have granted.</p>
+</div>
+</li>
+</ol>
+<h2 id="step-4-grant-access-to-the-service-account">Step 4: Grant Access to the Service Account</h2>
+<p>For the service account to access your Google Analytics data, you need to grant access to the Google Analytics property.</p>
+<p>To grant access to the service account:</p>
+<ol>
+<li>
+<p>Open <a href="https://analytics.google.com/">Google Analytics</a>.</p>
+</li>
+<li>
+<p>Open the Google Analytics property that you want to connect to. Select the name of the property in the top right of Google Analytics. In the following image, the property is called <strong>GA4 - Google Merch Shop</strong>.</p>
+<p><img alt="alt text" src="images/select-property.png" width="550" /></p>
+</li>
+<li>
+<p>Select <strong>Admin</strong> in the bottom left corner.</p>
+</li>
+<li>
+<p>In the <strong>Property</strong> column, select <strong>Property Access Management</strong>.</p>
+<p><img alt="alt text" src="images/property-access-management.png" width="300" /></p>
+</li>
+<li>
+<p>Select the <strong>+</strong> button to add a new user.</p>
+</li>
+<li>
+<p>Enter the service account, in this example <strong>example-documentation@exampledocumentation.iam.gserviceaccount.com</strong>, and then select <strong>Add</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can share this email account with business partners and other users that you want to have access to your analytics data. There are no secrets or keys included in the email address.</p>
+</div>
+</li>
+</ol>
+<h2 id="step-5-validation">Step 5: Validation</h2>
+<p>You should now be able to access data by calling the Google Analytics Data API. To validate this, we will query the number of active users in the last 7 days by calling the <code>runReport</code> endpoint using curl.</p>
+<p>The <code>runReport</code> endpoint is used to fetch analytics data, like user counts, sessions, countries, and events for a Google Analytics property. This guide does not cover the full details of how to use the Google Analytics Data API. For full information on the endpoints request and response structure, see the <a href="https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport"><code>runReport</code></a> documentation. For instructions on how to work with the Google Analytics Data API, see the <a href="https://developers.google.com/analytics/devguides/reporting/data/v1">Google Analytics Data API documentation</a>.</p>
+<p>To call <code>runReport</code> using curl:</p>
+<ol>
+<li>
+<p>Create an access token using <strong>gcloud</strong> and the JSON service account key file you downloaded in <a href="#step-3-create-service-account-and-keys">Create Service Account and Keys</a>. </p>
+<p>Execute the commands below in your terminal. Replace <code>your-service-account-key.json</code> with the path to your service account key file.</p>
+<div class="highlight"><pre><span></span><code>gcloud<span class="w"> </span>auth<span class="w"> </span>activate-service-account<span class="w"> </span>--key-file<span class="o">=</span>your-service-account-key.json
+
+gcloud<span class="w"> </span>auth<span class="w"> </span>print-access-token
+</code></pre></div>
+<p>The token to be used in the <code>Authorization: Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code> header is printed.</p>
+</li>
+<li>
+<p>Get your Google Analytics <strong>Property ID</strong>. You can find it in the Google Analytics <strong>Admin</strong> section under <strong>Property Settings</strong>. It has the following format: <strong>G-XXXXXXXXXX</strong>.</p>
+</li>
+<li>
+<p>Use the below curl command to make the call. Replace <code>YOUR_PROPERTY_ID</code> with your Google Analytics property ID, and <code>YOUR_ACCESS_TOKEN</code> with the access token you have created.</p>
+<p><div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="s2">&quot;https://analyticsdata.googleapis.com/v1beta/properties/YOUR_PROPERTY_ID:runReport&quot;</span><span class="w"> </span><span class="se">\</span>
+-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$YOUR_ACCESS_TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;dimensions&quot;: [{&quot;name&quot;: &quot;date&quot;}, {&quot;name&quot;: &quot;country&quot;}],</span>
+<span class="s1">    &quot;metrics&quot;: [{&quot;name&quot;: &quot;activeUsers&quot;}],</span>
+<span class="s1">    &quot;dateRanges&quot;: [{&quot;startDate&quot;: &quot;7daysAgo&quot;, &quot;endDate&quot;: &quot;today&quot;}]</span>
+<span class="s1">}&#39;</span>
+</code></pre></div>
+In the above example fields <code>dimensions</code>, <code>metrics</code>, and <code>dateRanges</code> are used to specify the data to retrieve. The dimensions are <code>date</code> and <code>country</code>, the metric is <code>activeUsers</code>, and the date range is set to the last 7 days.</p>
+<p>More fields can be added to the request, see the <a href="https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport"><code>runReport</code></a> documentation for more information.</p>
+</li>
+<li>
+<p>Validate the response:</p>
+<ul>
+<li>
+<p><strong>If successful</strong>, you should receive an output similar to what is shown below. For more information on the response structure of <code>runReport</code> see the <a href="https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/RunReportResponse">RunReportResponse</a> documentation.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="nt">&quot;dimensionHeaders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;date&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;country&quot;</span><span class="p">}</span>
+<span class="p">],</span>
+<span class="nt">&quot;metricHeaders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;activeUsers&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TYPE_INTEGER&quot;</span><span class="p">}</span>
+<span class="p">],</span>
+<span class="nt">&quot;rows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;dimensionValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;20250717&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;United States&quot;</span><span class="p">}],</span>
+<span class="w">    </span><span class="nt">&quot;metricValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234&quot;</span><span class="p">}]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">...</span>
+<span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>If unsuccessful</strong>, you will receive an error message. Common errors include:</p>
+<ul>
+<li><code>insufficientPermissions</code>: This means that the service account does not have access to the Google Analytics property. Make sure you have granted access to the service account in <a href="#step-3-create-service-account-and-keys">Create Service Account and Keys</a>.</li>
+<li><code>invalidParameter</code>: This means that there is an issue with the request parameters. Check that you have provided the correct property ID and that the request body is correctly formatted.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

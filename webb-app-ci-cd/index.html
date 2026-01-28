@@ -1,0 +1,854 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>CI/CD for the Translator web app - Example Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-B7ZFRMHGEK"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-B7ZFRMHGEK",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-B7ZFRMHGEK",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cicd-for-the-translator-web-app" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Example Documentation" class="md-header__button md-logo" aria-label="Example Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Example Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CI/CD for the Translator web app
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Example Documentation" class="md-nav__button md-logo" aria-label="Example Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Example Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enable Programmatic Access to Google Analytics Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD for the Translator web app
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD for the Translator web app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline stages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline stages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1: Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-integration-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2: Integration test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-3-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3: Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#troubleshoot-pipeline-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshoot pipeline failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-notifications-for-pipeline-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up notifications for pipeline failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-app-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit app keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-build-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update build requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add integration tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read More
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline stages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline stages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1: Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-integration-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2: Integration test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-3-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3: Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#troubleshoot-pipeline-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshoot pipeline failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-notifications-for-pipeline-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set up notifications for pipeline failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-app-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit app keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-build-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update build requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add integration tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read More
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cicd-for-the-translator-web-app">CI/CD for the Translator web app</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The Continuous Integration and Continuous Delivery (CI/CD) pipeline for the Translator web app automates the build, test, and deploy processes using Azure services. It ensures consistent build environments, verifies functionality through integration tests, and continuously deploys the app to Azure App Service.</p>
+<h2 id="cicd-components">CI/CD components</h2>
+<p>Files at the root of the repository:</p>
+<ul>
+<li><strong><code>azure-pipelines.yml</code></strong>: Defines the CI/CD pipeline, including its stages, jobs, steps, triggers, and configuration.</li>
+<li><strong><code>Dockerfile</code></strong>: Specifies how to build the Docker image, including the Python version, the path to <code>requirements.txt</code>, and the app's startup commands.</li>
+<li><strong><code>requirements.txt</code></strong>: Lists the Python packages the app depends on.</li>
+<li><strong><code>test.xml</code></strong>: Documentation XML file used during integration tests.</li>
+</ul>
+<p>Azure services:</p>
+<ul>
+<li><strong>Azure Pipelines</strong>: Builds, tests, and deploys the code as defined in <code>azure-pipelines.yml</code>.</li>
+<li><strong>Azure Key Vault</strong>: Stores the app’s keys and secrets, such as the Foundry Translator Resource API key.</li>
+<li><strong>Azure Container Registry</strong>: Stores Docker images. Added as a Service Connection to the Azure DevOps project.</li>
+<li><strong>Azure App Services</strong>: Hosts the web app.</li>
+</ul>
+<p>See <a href="#read-more">Read more</a> for additional details about these services and concepts.</p>
+<h2 id="pipeline-stages">Pipeline stages</h2>
+<p>The <code>azure-pipelines.yml</code> file defines the pipeline stages.</p>
+<h3 id="trigger">Trigger</h3>
+<p>The pipeline triggers when code is merged to the <code>main</code> branch. </p>
+<h3 id="stage-1-build">Stage 1: Build</h3>
+<p>The pipeline downloads the code and runs <code>docker build</code>. If successful, the Docker image is pushed to the Azure Container Registry. If the build fails, the pipeline stops, and you can view the details in the <a href="#troubleshoot-pipeline-failures">pipeline logs</a>.</p>
+<h3 id="stage-2-integration-test">Stage 2: Integration test</h3>
+<p>This stage runs if the build is successful. The <code>AzureKeyVault@2</code> task connects to Azure Key Vault and download the required keys as masked environment variables. The pipeline then runs the Docker container locally followed by the tests in the <code>script</code> blocks. For information on what each test does, see comments in <code>azure-pipelines.yml</code>. If any test fails, the pipeline stops, and you can view the details in the <a href="#troubleshoot-pipeline-failures">pipeline logs</a>. </p>
+<h3 id="stage-3-deployment">Stage 3: Deployment</h3>
+<p>After a successful integration test, the pipeline deploys the Docker image to the Azure App Service. </p>
+<h2 id="procedures">Procedures</h2>
+<h3 id="troubleshoot-pipeline-failures">Troubleshoot pipeline failures</h3>
+<p>To identify and fix pipeline failures:</p>
+<ol>
+<li>Sign in to the <strong><a href="https://dev.azure.com/">Azure DevOps</a></strong> portal. </li>
+<li>Select <strong>Pipelines</strong>.</li>
+<li>Select <strong>translator-azure-pipeline</strong>.</li>
+<li>In the list of runs, select the failed run, marked with a red X. </li>
+<li>In the run summary, select the failed job.</li>
+<li>In the task list, select the failed task, highlighted in red. The log pane displays the console output.</li>
+</ol>
+<h3 id="set-up-notifications-for-pipeline-failures">Set up notifications for pipeline failures</h3>
+<p>To receive an email with a direct link to the failed pipeline run:</p>
+<ol>
+<li>Sign in to the <strong><a href="https://dev.azure.com/">Azure DevOps</a></strong> portal.  </li>
+<li>Select <strong>Project Settings</strong> &gt; <strong>Notifications</strong>.</li>
+<li>Select <strong>+ New subscription</strong>.</li>
+<li>Select <strong>A build fails</strong> as the <strong>Template</strong>, and then select <strong>Next</strong>.</li>
+<li>Select <strong>Finish</strong>.</li>
+</ol>
+<h3 id="edit-app-keys">Edit app keys</h3>
+<p>To update, add, or remove app keys:</p>
+<ol>
+<li>Sign in to the <strong><a href="https://portal.azure.com/">Microsoft Azure</a></strong> portal.</li>
+<li>Search for and select <strong>Key Vaults</strong>.</li>
+<li>Filter for <strong>resource-group-translator</strong> and select the key vault.</li>
+<li>Do one of the following:<ul>
+<li><strong>Add a key</strong>: Select <strong>Create a key</strong>.</li>
+<li><strong>Update a key</strong>: Select <strong>+ New Version</strong>. </li>
+<li><strong>Remove a key</strong>: Select <strong>Delete</strong>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="update-build-requirements">Update build requirements</h3>
+<ul>
+<li>
+<p><strong>Python version</strong>: Open the <code>Dockerfile</code> and update the <code>FROM python:&lt;version&gt;-slim</code> parameter.</p>
+</li>
+<li>
+<p><strong>Packages</strong>: Open <code>requirements.txt</code> to add, update, or remove package dependencies.</p>
+</li>
+</ul>
+<h3 id="add-integration-tests">Add integration tests</h3>
+<p>Integration test logic is defined in the <code>azure-pipelines.yml</code> file.</p>
+<p>To test additional files or endpoints:</p>
+<ol>
+<li>Locate the <code>script</code> block that contains the <code># Test endpoints</code> comment.</li>
+<li>Add the new test in that <code>script</code>  block. Follow the <code>echo</code> and <code>curl</code> pattern used in <code>"Test 1: Standard XML Translation"</code> and <code>"Test 2: Health Check"</code>.</li>
+</ol>
+<p>Example:
+<div class="highlight"><pre><span></span><code>- script: |
+   # Test endpoints
+   # ... (Docker run logic) ...
+
+   # Tests the translate endpoint passing the test.xml file. Any non-200 HTTP response fails this stage.    
+   echo &quot;Test 1: Standard XML Translation&quot;
+   curl -X POST http://localhost:8000/translate \
+      -H &quot;Content-Type: application/xml&quot; \
+      -d @tests/test.xml --fail
+
+   echo &quot;Test 2: Health Check&quot;
+   curl -f http://localhost:8000/health || exit 1
+</code></pre></div></p>
+<p>To test complex logic: </p>
+<ol>
+<li>Add a Python script to the <code>tests</code> folder in the repository.</li>
+<li>Add a new <code>script</code> block in <code>azure-pipelines.yml</code> with commands to install Python on the build agent and run your script after the container starts. Follow the pattern used in <code>task: UsePythonVersion@0</code>.</li>
+</ol>
+<p>Example:
+<div class="highlight"><pre><span></span><code>- task: UsePythonVersion@0
+   inputs:
+      versionSpec: &#39;3.x&#39;
+
+   - script: |
+      # Start container as before
+      docker run -d -p 8000:8000 --name test-app -e API_KEY=$(TRANSLATION-API-KEY) $(image)
+      sleep 10
+
+      # Install dependencies and run the script
+      pip install requests
+      python tests/integration_test.py
+      displayName: &#39;Run Python Integration Tests&#39;
+</code></pre></div></p>
+<h2 id="read-more">Read More</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops">Azure Pipelines</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/container-registry/">Azure Container Registry</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/key-vault/">Azure Key Vault</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/app-service/">Azure App Services</a></li>
+<li><a href="https://docs.docker.com/get-started/docker-concepts/building-images/">Docker, Building an image</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
